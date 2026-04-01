@@ -23,7 +23,6 @@ function applyRules(node, replacements) {
 
 function run() {
   chrome.storage.local.get(["enabled", "replacements"], (data) => {
-    // Only run if enabled AND there are rules in storage
     if (data.enabled !== false && data.replacements) {
       applyRules(document.body, data.replacements);
     }

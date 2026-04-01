@@ -1,185 +1,179 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>:3</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:wght@400;700&display=swap" rel="stylesheet" />
-    <style>
-      body {
-              font-family: "Sour Gummy", sans-serif;
-              width: 220px;
-              padding: 15px;
-              background: linear-gradient(0deg, #ffccdd, #ffdddd);
-              border: dashed #ffb9d0 5px;
-              border-radius: 15px;
-              color: #ff66b2;
-            }
-            h2 {
-              font-size: 23px;
-              margin: 0 0 10px 0;
-            }
-            .setting-item {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              margin-bottom: 10px;
-              font-size: 16px;
-              color
-            }
-            /* Toggle Switch */
-            .switch {
-              position: relative;
-              display: inline-block;
-              width: 40px;
-              height: 22px;
-            }
-            .switch input {
-              opacity: 0;
-              width: 0;
-              height: 0;
-            }
-            .slider {
-              position: absolute;
-              cursor: pointer;
-              top: 0;
-              left: 0;
-              right: 0;
-              bottom: 0;
-              background-color: #ccc;
-              transition: 0.3s;
-              border-radius: 34px;
-            }
-            .slider:before {
-              position: absolute;
-              content: "";
-              height: 16px;
-              width: 16px;
-              left: 3px;
-              bottom: 3px;
-              background-color: white;
-              transition: 0.3s;
-              border-radius: 50%;
-            }
-            input:checked + .slider {
-              background-color: #ff66b2;
-            }
-            input:checked + .slider:before {
-              transform: translateX(18px);
-            }
+<head>
+  <meta charset="UTF-8" />
+  <title>:3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Sour Gummy", sans-serif;
+      width: 220px;
+      padding: 15px;
+      background: linear-gradient(0deg, #ffccdd, #ffdddd);
+      border: dashed #ffb9d0 5px;
+      border-radius: 15px;
+      color: #ff66b2;
+    }
+    h2 {
+      font-size: 23px;
+      margin: 0 0 10px 0;
+    }
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 22px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.3s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #ff66b2;
+    }
+    input:checked + .slider:before {
+      transform: translateX(18px);
+    }
+    details {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      padding: 5px 0;
+    }
+    .editor-content {
+      background: rgba(255, 255, 255, 0.3);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .input-group {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    .input-group input {
+      width: 60px;
+      border: 1px solid #ffb9d0;
+      background-color: #fff1f6;
+      border-radius: 21px;
+      padding: 3px;
+    }
+    .input-group input:focus {
+      outline: none;
+      border-color: #ff66b2;
+      background-color: #ffffff;
+    }
+    #emojiListContainer {
+      max-height: 120px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+    .rule-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      background: white;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+    .del-btn {
+      color: #ff5050;
+      cursor: pointer;
+      font-weight: bold;
+      border: none;
+      background: none;
+    }
+    #addBtn {
+      width: 100%;
+      background: #ff66b2;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: "Sour Gummy";
+    }
+    #saveBtn {
+      width: 100%;
+      background: #ff66b2;
+      color: white;
+      border: none;
+      padding: 8px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: "Sour Gummy";
+    }
+    #loadPresetBtn {
+      width: 100%;
+      background: transparent;
+      color: #ff66b2;
+      border: none;
+      cursor: pointer;
+      font-family: "Sour Gummy";
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <h2>:3 your internet!</h2>
+  <div class="setting-item">
+    <span>Enable :3</span>
+    <label class="switch">
+      <input type="checkbox" id="enableToggle" checked />
+      <span class="slider"></span>
+    </label>
+  </div>
+  <p id="emptyWarning" style="color: #ff4d4d; font-size: 13px">
+    <b>no rules! add some rules or load the preset :3</b>
+  </p>
 
-            /* Editor Styles */
-            details {
-              margin-top: 10px;
-              font-size: 14px;
-            }
-            summary {
-              cursor: pointer;
-              font-weight: bold;
-              padding: 5px 0;
-            }
-            .editor-content {
-              background: rgba(255, 255, 255, 0.3);
-              padding: 10px;
-              border-radius: 10px;
-            }
-            .input-group {
-              display: flex;
-              gap: 5px;
-              margin-bottom: 10px;
-            }
-            .input-group input {
-              width: 60px;
-              border: 1px solid #ffb9d0;
-              background-color: #fff1f6;
-              border-radius: 21px;
-              padding: 3px;
-            }
-      .input-group input:focus {
-        outline: none;
-        border-color: #ff66b2;
-        background-color: #ffffff;
-      }
-            #emojiListContainer {
-              max-height: 120px;
-              overflow-y: auto;
-              margin-bottom: 10px;
-            }
-            .rule-row {
-              display: flex;
-              justify-content: space-between;
-              margin-bottom: 5px;
-              background: white;
-              padding: 3px 8px;
-              border-radius: 5px;
-              font-size: 12px;
-            }
-            .del-btn {
-              color: #ff5050;
-              cursor: pointer;
-              font-weight: bold;
-              border: none;
-              background: none;
-            }
-            #addBtn {
-              width: 100%;
-              background: #ff66b2;
-              color: white;
-              border: none;
-              border-radius: 20px;
-              cursor: pointer;
-              font-family: "Sour Gummy";
-            }
-            #saveBtn {
-              width: 100%;
-              background: #ff66b2;
-              color: white;
-              border: none;
-              padding: 8px;
-              border-radius: 20px;
-              cursor: pointer;
-              font-family: "Sour Gummy";
-            }
-            #loadPresetBtn {
-              width: 100%;
-              background: transparent;
-              color: #ff66b2;
-              border: none;
-              cursor: pointer;
-              font-family: "Sour Gummy";
-              text-align: right;
-            }
-    </style>
-  </head>
-  <body>
-    <h2>:3 your internet!</h2>
-    <div class="setting-item">
-      <span>Enable :3</span>
-      <label class="switch">
-        <input type="checkbox" id="enableToggle" checked />
-        <span class="slider"></span>
-      </label>
-    </div>
-    <p
-      id="emptyWarning"
-      style="color: #ff4d4d; font-size: 13px;">
-      <b>no rules! add some rules or load the preset :3</b>
-    </p>
-
-    <details>
-      <summary>Edit Rules</summary>
-      <div class="editor-content">
-        <div class="input-group">
-          <input type="text" id="newKey" />→
-          <input type="text" id="newValue" />
-          <button id="addBtn">+</button>
-        </div>
-
-        <div id="emojiListContainer"></div>
-        <button id="loadPresetBtn">Load Preset</button>
-        <button id="saveBtn">Save & Refresh</button>
+  <details>
+    <summary>Edit Rules</summary>
+    <div class="editor-content">
+      <div class="input-group">
+        <input type="text" id="newKey" />→
+        <input type="text" id="newValue" />
+        <button id="addBtn">+</button>
       </div>
-    </details>
 
-    <script src="popup.js"></script>
-  </body>
+      <div id="emojiListContainer"></div>
+      <button id="loadPresetBtn">Load Preset</button>
+      <button id="saveBtn">Save & Refresh</button>
+    </div>
+  </details>
+
+  <script src="popup.js"></script>
+</body>
 </html>
