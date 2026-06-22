@@ -22,28 +22,72 @@ function applyRules(node, replacements) {
 }
 
 function run() {
-  chrome.storage.local.get(["enabled", "replacements"], (data) => {
-    if (data.enabled !== false && data.replacements) {
-      applyRules(document.body, data.replacements);
+  if (!chrome.runtime?.id || !chrome.storage?.local) return;
+
+  chrome.storage.local.get(["globalEnabled", "threeEnabled", "silliesEnabled", "disabledSites", "replacements", "sillyReplacements"], (data) => {
+    if (chrome.runtime.lastError) return; 
+
+    const globalEnabled = data.globalEnabled !== false;
+    const threeEnabled = data.threeEnabled !== false;
+    const silliesEnabled = data.silliesEnabled !== false;
+    const disabledSites = data.disabledSites || [];
+    const currentHost = window.location.hostname;
+
+    const isRunning = globalEnabled && !disabledSites.includes(currentHost);
+
+    if (isRunning) {
+      let combinedReplacements = {};
+      
+      if (threeEnabled && data.replacements) {
+        combinedReplacements = { ...combinedReplacements, ...data.replacements };
+      }
+      if (silliesEnabled && data.sillyReplacements) {
+        combinedReplacements = { ...combinedReplacements, ...data.sillyReplacements };
+      }
+
+      if (Object.keys(combinedReplacements).length > 0) {
+        applyRules(document.body, combinedReplacements);
+      }
     }
   });
 }
 
-chrome.runtime.onMessage.addListener((request) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "stop") {
     location.reload();
+    sendResponse({ status: "reloaded" });
   } else if (request.action === "start" || request.action === "update") {
     run();
+    sendResponse({ status: "updated" });
   }
+  return true; 
 });
 
 run();
 
 const observer = new MutationObserver((mutations) => {
-  chrome.storage.local.get(["enabled", "replacements"], (data) => {
-    if (data.enabled !== false && data.replacements) {
-      for (const mutation of mutations) {
-        mutation.addedNodes.forEach((node) => applyRules(node, data.replacements));
+  if (!chrome.runtime?.id || !chrome.storage?.local) return;
+
+  chrome.storage.local.get(["globalEnabled", "threeEnabled", "silliesEnabled", "disabledSites", "replacements", "sillyReplacements"], (data) => {
+    if (chrome.runtime.lastError) return;
+
+    const globalEnabled = data.globalEnabled !== false;
+    const threeEnabled = data.threeEnabled !== false;
+    const silliesEnabled = data.silliesEnabled !== false;
+    const disabledSites = data.disabledSites || [];
+    const currentHost = window.location.hostname;
+
+    const isRunning = globalEnabled && !disabledSites.includes(currentHost);
+
+    if (isRunning) {
+      let combinedReplacements = {};
+      if (threeEnabled && data.replacements) combinedReplacements = { ...combinedReplacements, ...data.replacements };
+      if (silliesEnabled && data.sillyReplacements) combinedReplacements = { ...combinedReplacements, ...data.sillyReplacements };
+
+      if (Object.keys(combinedReplacements).length > 0) {
+        for (const mutation of mutations) {
+          mutation.addedNodes.forEach((node) => applyRules(node, combinedReplacements));
+        }
       }
     }
   });

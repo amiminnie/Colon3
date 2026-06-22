@@ -1,179 +1,431 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>:3</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: "Sour Gummy", sans-serif;
-      width: 220px;
-      padding: 15px;
-      background: linear-gradient(0deg, #ffccdd, #ffdddd);
-      border: dashed #ffb9d0 5px;
-      border-radius: 15px;
-      color: #ff66b2;
-    }
-    h2 {
-      font-size: 23px;
-      margin: 0 0 10px 0;
-    }
-    .setting-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 40px;
-      height: 22px;
-    }
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: 0.3s;
-      border-radius: 34px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 16px;
-      width: 16px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: 0.3s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background-color: #ff66b2;
-    }
-    input:checked + .slider:before {
-      transform: translateX(18px);
-    }
-    details {
-      margin-top: 10px;
-      font-size: 14px;
-    }
-    summary {
-      cursor: pointer;
-      font-weight: bold;
-      padding: 5px 0;
-    }
-    .editor-content {
-      background: rgba(255, 255, 255, 0.3);
-      padding: 10px;
-      border-radius: 10px;
-    }
-    .input-group {
-      display: flex;
-      gap: 5px;
-      margin-bottom: 10px;
-    }
-    .input-group input {
-      width: 60px;
-      border: 1px solid #ffb9d0;
-      background-color: #fff1f6;
-      border-radius: 21px;
-      padding: 3px;
-    }
-    .input-group input:focus {
-      outline: none;
-      border-color: #ff66b2;
-      background-color: #ffffff;
-    }
-    #emojiListContainer {
-      max-height: 120px;
-      overflow-y: auto;
-      margin-bottom: 10px;
-    }
-    .rule-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 5px;
-      background: white;
-      padding: 3px 8px;
-      border-radius: 5px;
-      font-size: 12px;
-    }
-    .del-btn {
-      color: #ff5050;
-      cursor: pointer;
-      font-weight: bold;
-      border: none;
-      background: none;
-    }
-    #addBtn {
-      width: 100%;
-      background: #ff66b2;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-family: "Sour Gummy";
-    }
-    #saveBtn {
-      width: 100%;
-      background: #ff66b2;
-      color: white;
-      border: none;
-      padding: 8px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-family: "Sour Gummy";
-    }
-    #loadPresetBtn {
-      width: 100%;
-      background: transparent;
-      color: #ff66b2;
-      border: none;
-      cursor: pointer;
-      font-family: "Sour Gummy";
-      text-align: right;
-    }
-  </style>
-</head>
-<body>
-  <h2>:3 your internet!</h2>
-  <div class="setting-item">
-    <span>Enable :3</span>
-    <label class="switch">
-      <input type="checkbox" id="enableToggle" checked />
-      <span class="slider"></span>
-    </label>
-  </div>
-  <p id="emptyWarning" style="color: #ff4d4d; font-size: 13px">
-    <b>no rules! add some rules or load the preset :3</b>
-  </p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>:3</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+      :root {
+        --bg-main: #fff6fa;
+        --bg-dark: #ffe6f0;
+        --surface-hgt: #ffa2c5;
+        --surface-hgt-shadow: #ff86b6;
+        --surface-text: #ff5f9e;
+        --surface: #ffdce8;
+        --surface-shadow: #ffb4cc;
+        --surface-dsb: #ffeef4;
+        --highlight: #ffffffcc;
+        --shading: #80164015;
+        --text-main: #c22b67;
+        --border-solid: #ffc1d9;
+      }
 
-  <details>
-    <summary>Edit Rules</summary>
-    <div class="editor-content">
-      <div class="input-group">
-        <input type="text" id="newKey" />→
-        <input type="text" id="newValue" />
-        <button id="addBtn">+</button>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+
+      body {
+        background: var(--surface-text);
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        font-family: "Overlock", sans-serif;
+        width: 240px;
+        padding: 15px;
+        background-color: var(--surface);
+        color: var(--surface-text);
+        border-bottom: 5px solid var(--surface-shadow);
+        border-top: 1px solid var(--highlight);
+        box-shadow: 5px 5px 0 var(--shading);
+        background-image: url("images/cat.svg");
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: 100% auto;
+      }
+
+      .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      h2 {
+        font-size: 26px;
+        margin: 0;
+        color: var(--surface-text);
+        box-shadow: inset 0 -13px 0 0 var(--border-solid);
+      }
+
+      .setting-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 8px 0;
+        font-size: 15px;
+      }
+
+      .switch-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .switch {
+        appearance: none;
+        width: 32px;
+        height: 16px;
+        border-top: 3px solid var(--surface-shadow);
+        border-bottom: 1px solid var(--highlight);
+        background: var(--surface-dsb);
+        position: relative;
+        cursor: pointer;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider:before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        right: 12px;
+        width: 20px;
+        height: 16px;
+        background: var(--surface-hgt);
+        border-bottom: 5px solid var(--surface-hgt-shadow);
+        border-top: 1px solid var(--highlight);
+        box-shadow:
+          3px 3px 0 var(--shading),
+          2px 2px 0 var(--shading);
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.3);
+      }
+      .slider:hover:before {
+        border-bottom: 6px solid var(--surface-hgt-shadow);
+        margin-top: -1px;
+        box-shadow:
+          4px 4px 0 var(--shading),
+          2px 2px 0 var(--shading);
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(12px);
+      }
+
+      .listing {
+        border-top: 2px dashed var(--border-solid);
+        padding-top: 5px;
+      }
+      .bottom-listing {
+        border-top: 2px dashed var(--border-solid);
+        margin-top: 8px;
+        padding-top: 5px;
+      }
+
+      .icon-btn {
+        border: none;
+        text-align: center;
+        width: 22px;
+        height: 25px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--surface-hgt);
+        border-bottom: 5px solid var(--surface-hgt-shadow);
+        border-top: 1px solid var(--highlight);
+        color: var(--surface-text);
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow:
+          3px 3px 0 var(--shading),
+          2px 2px 0 var(--shading);
+        transition: all 0.2s ease;
+      }
+      .icon-btn .material-symbols-outlined {
+        font-size: 1rem;
+        color: var(--surface-dsb);
+        text-shadow: 0 0 3px var(--surface-text);
+      }
+      .icon-btn:hover {
+        border-bottom: 6px solid var(--surface-hgt-shadow);
+        margin-top: -1px;
+        box-shadow:
+          4px 4px 0 var(--shading),
+          2px 2px 0 var(--shading);
+      }
+      .icon-btn:active {
+        border-bottom: 3px solid var(--surface-hgt-shadow);
+        box-shadow: 1px 1px 0 var(--shading);
+        margin-top: 2px;
+      }
+
+      .hidden-panel {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+
+        transition:
+          max-height 0.4s ease-in-out,
+          opacity 0.3s ease-in-out,
+          padding 0.4s ease-in-out;
+      }
+
+      .hidden-panel:nth-child(2) {
+        border-bottom: 2px dashed var(--border-solid);
+      }
+
+      .hidden-panel.active {
+        opacity: 1;
+        padding-top: 5px;
+        padding-bottom: 20px;
+        max-height: 500px;
+      }
+
+      .input-group {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 10px;
+      }
+      .input-group input {
+        width: 40%;
+        font-size: 12px;
+        height: 23px;
+        background: var(--bg-main);
+        border: none;
+        border-top: 3px solid var(--surface-shadow);
+        padding: 3px;
+      }
+      .input-group input:focus {
+        outline: none;
+        border-bottom: 1px solid var(--highlight);
+      }
+
+      .scroll-list {
+        max-height: 100px;
+        overflow-y: auto;
+        margin-bottom: 5px;
+        border-top: 3px solid var(--surface-shadow);
+      }
+      .scroll-list .material-symbols-outlined {
+        font-size: 0.7rem;
+        vertical-align: -3px;
+      }
+
+      .scroll-list::-webkit-scrollbar {
+        width: 10px;
+      }
+      .scroll-list::-webkit-scrollbar-track {
+        background: var(--bg-dark);
+      }
+      .scroll-list::-webkit-scrollbar-thumb {
+        background-color: var(--surface-hgt);
+        border-bottom: solid 4px var(--surface-hgt-shadow);
+        border-top: solid 1px var(--highlight);
+        transition: border 0.1s ease;
+      }
+      .scroll-list::-webkit-scrollbar-thumb:hover {
+        border-bottom: solid 2px var(--surface-hgt-shadow);
+      }
+
+      .rule-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding-bottom: 2px;
+        padding-left: 8px;
+        font-size: 12px;
+        background: var(--bg-main);
+      }
+      .rule-row:hover {
+        background: white;
+      }
+
+      .del-btn {
+        cursor: pointer;
+        font-weight: bold;
+        border: none;
+        background: none;
+      }
+      .del-btn .material-symbols-outlined {
+        font-size: 16px;
+        color: #ff5050;
+        pointer-events: none;
+      }
+      .del-btn:hover .material-symbols-outlined {
+        transform: translateY(1px);
+      }
+
+      .action-btn {
+        width: 100%;
+        padding: 0.3rem 0.5rem;
+        border: none;
+        background: var(--surface-hgt);
+        border-bottom: 5px solid var(--surface-hgt-shadow);
+        border-top: 1px solid var(--highlight);
+        color: var(--surface-dsb);
+        text-shadow: 0 0 3px var(--surface-text);
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow:
+          3px 3px 0 var(--shading),
+          2px 2px 0 var(--shading);
+        transition: all 0.2s ease;
+      }
+      .action-btn .material-symbols-outlined {
+        font-size: 0.8rem;
+        color: var(--surface-dsb);
+        text-shadow: 0 0 3px var(--surface-text);
+      }
+      .action-btn:hover {
+        border-bottom: 6px solid var(--surface-hgt-shadow);
+        margin-top: -1px;
+        box-shadow:
+          4px 4px 0 var(--shading),
+          2px 2px 0 var(--shading);
+      }
+      .action-btn:active {
+        border-bottom: 3px solid var(--surface-hgt-shadow);
+        box-shadow: 1px 1px 0 var(--shading);
+        margin-top: 2px;
+      }
+
+      .preset-link {
+        width: 100%;
+        background: transparent;
+        color: var(--surface-text);
+        border: none;
+        cursor: pointer;
+        font-family: "Overlock", sans-serif;
+        text-align: right;
+        font-size: 12px;
+        padding: 0;
+        margin-bottom: 5px;
+        display: block;
+      }
+      footer {
+        margin-top: 10px;
+        margin-bottom: -10px;
+        font-size: 0.7rem;
+        text-align: right;
+      }
+      footer a {
+        color: var(--text-main);
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-row">
+        <h2>:3 Your Internet!</h2>
+        <label class="switch">
+          <input type="checkbox" id="globalToggle" checked />
+          <span class="slider"></span>
+        </label>
       </div>
 
-      <div id="emojiListContainer"></div>
-      <button id="loadPresetBtn">Load Preset</button>
-      <button id="saveBtn">Save & Refresh</button>
-    </div>
-  </details>
+      <div class="listing">
+        <div class="setting-item">
+          <span>Make it :3</span>
+          <div class="switch-container">
+            <label class="switch">
+              <input type="checkbox" id="threeToggle" checked />
+              <span class="slider"></span>
+            </label>
+            <button id="toggleSettingsBtn" class="icon-btn" title="Edit :3 Rules">
+              <span class="material-symbols-outlined"> settings </span>
+            </button>
+          </div>
+        </div>
 
-  <script src="popup.js"></script>
-</body>
+        <div id="settingsPanel" class="hidden-panel">
+          <div class="input-group">
+            <input type="text" id="newKey" placeholder=":)" /><span class="material-symbols-outlined">
+              arrow_forward
+            </span>
+            <input type="text" id="newValue" placeholder=":3" />
+            <button id="addBtn" class="action-btn" style="width: auto; margin: 0">
+              <span class="material-symbols-outlined"> add_2 </span>
+            </button>
+          </div>
+          <div id="emojiListContainer" class="scroll-list"></div>
+          <p id="emptyWarning" style="color: #ff4d4d; font-size: 11px; margin: 0 0 5px 0">
+            <b>Nothing here, add something!</b>
+          </p>
+          <button id="loadPresetBtn" class="preset-link">Load Preset</button>
+          <button id="saveBtn" class="action-btn">Save</button>
+        </div>
+
+        <div class="setting-item">
+          <span>Other Sillies</span>
+          <div class="switch-container">
+            <label class="switch">
+              <input type="checkbox" id="silliesToggle" checked />
+              <span class="slider"></span>
+            </label>
+            <button id="toggleSilliesSettingsBtn" class="icon-btn" title="Edit Silly Rules">
+              <span class="material-symbols-outlined"> settings </span>
+            </button>
+          </div>
+        </div>
+
+        <div id="silliesSettingsPanel" class="hidden-panel">
+          <div class="input-group">
+            <input type="text" id="newSillyKey" placeholder="cookie" /><span class="material-symbols-outlined">
+              arrow_forward
+            </span>
+            <input type="text" id="newSillyValue" placeholder="biscuit" />
+            <button id="addSillyBtn" class="action-btn" style="width: auto; margin: 0">
+              <span class="material-symbols-outlined"> add_2 </span>
+            </button>
+          </div>
+          <div id="sillyListContainer" class="scroll-list"></div>
+          <p id="sillyEmptyWarning" style="color: #ff4d4d; font-size: 11px; margin: 0 0 5px 0">
+            <b>It's empty, add something!</b>
+          </p>
+          <button id="loadSillyPresetBtn" class="preset-link">Load Preset</button>
+          <button id="saveSillyBtn" class="action-btn">Save</button>
+        </div>
+
+        <div class="bottom-listing">
+          <div class="setting-item" style="margin: 4px 0 0 0">
+            <span>Per-site enable</span>
+            <div class="switch-container">
+              <label class="switch">
+                <input type="checkbox" id="siteToggle" checked />
+                <span class="slider"></span>
+              </label>
+              <button id="toggleSitesBtn" class="icon-btn" title="Disabled Sites List">
+                <span class="material-symbols-outlined"> ad_group_off </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="sitesPanel" class="hidden-panel">
+          <div id="disabledSitesContainer" class="scroll-list"></div>
+          <p id="noDisabledSites" style="color: var(--text-main); font-size: 11px; margin: 0; text-align: center">
+            Nothing here yet!
+          </p>
+        </div>
+      </div>
+      <script src="popup.js"></script>
+      <footer>Colon3 v1.2 - <a href="https://amiminnie.github.io">amiminnie</a></footer>
+    </div>
+  </body>
 </html>
