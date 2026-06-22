@@ -2,7 +2,7 @@
 Extension that :3 your internet!
 
 # How to install :3?
-* Download the [latest release](https://github.com/amiminnie/Colon3/releases) and extract it to a folder on your computer.
+* Download the [latest release](https://github.com/amiminnie/Colon3/releases/latest) and extract it to a folder on your computer.
 * Locate the extensions page on your browser and enable Developer Mode.
 * Select `Load unpacked` and select the folder you just extracted.
 * If everything was done correctly, you should now see a ![Icon](images/16.png) in your extensions list!
