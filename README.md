@@ -1,20 +1,16 @@
 # :3 
- :octocat: extension that :3 your internet!
+Extension that :3 your internet!
 
-# How to install?
-* download as zip
-* unzip to desired folder
-* go to `chrome://extensions` on your Chrome browser (or the equivalent if you're using another browser)
-* press "Load Unpacked" and select the unzipped folder
-* enjoy :3
+# How to install :3?
+* Download the [latest release](https://github.com/amiminnie/Colon3/releases) and extract it to a folder on your computer.
+* Locate the extensions page on your browser and enable Developer Mode.
+* Select `Load unpacked` and select the folder you just extracted.
+* If everything was done correctly, you should now see a ![Icon](images/16.png) in your extensions list!
 
-# How to use?
-* press the little puzzle piece icon at the top right
-* if correctly installed, you'll see a :3, press on that
-* now you can enable or disable the extension
-* additionally you can press "edit rules" to either add or remove replacement rules 
+# How to use it?
+When you click on the little ![Icon](images/16.png), a little window will pop up. The UI is pretty intuitive to use, 
+<img src="images/tutorial.png" width="50%"><br/>
+You can either add your own rules or load my preset, or both!
 
-# How to uninstall 3:
-* go to chrome://extensions on your Chrome browser
-* locate ":3"
-* press "Remove"
+# How to uninstall? 3:
+* You can visit the same extensions page and press `Remove`
