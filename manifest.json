@@ -1,9 +1,15 @@
 {
   "manifest_version": 3,
   "name": ":3",
-  "version": "1.2",
-  "description": ":3",
-  "permissions": ["storage", "tabs"],
+  "version": "1.31",
+  "description": ":3 your internet!",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "action": {
     "default_popup": "index.html",
     "default_icon": {
@@ -17,5 +23,13 @@
       "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "colon3@amiminnie.com",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  }
 }

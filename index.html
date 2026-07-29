@@ -33,8 +33,14 @@
           "opsz" 24;
       }
 
+      html,
       body {
-        background: var(--surface-text);
+        background: transparent !important;
+        scrollbar-width: none;
+        overflow: hidden;
+      }
+
+      body {
         margin: 0;
         padding: 0;
       }
@@ -177,11 +183,13 @@
         max-height: 0;
         overflow: hidden;
         opacity: 0;
+        transform: translateY(-10px);
 
         transition:
-          max-height 0.4s ease-in-out,
-          opacity 0.3s ease-in-out,
-          padding 0.4s ease-in-out;
+          max-height 0.4s ease,
+          opacity 0.6s ease,
+          transform 0.1s ease 0.4s,
+          padding 0.6s ease;
       }
 
       .hidden-panel:nth-child(2) {
@@ -193,6 +201,12 @@
         padding-top: 5px;
         padding-bottom: 20px;
         max-height: 500px;
+        transform: translateY(0);
+        transition:
+          max-height 0.4s ease-in-out,
+          opacity 0.6s ease,
+          transform 1s ease,
+          padding 0.6s cubic-bezier(0.34, 2, 0.64, 1);
       }
 
       .input-group {
@@ -220,6 +234,7 @@
         margin-bottom: 5px;
         border-top: 3px solid var(--surface-shadow);
       }
+
       .scroll-list .material-symbols-outlined {
         font-size: 0.7rem;
         vertical-align: -3px;
@@ -335,7 +350,7 @@
         <h2>:3 Your Internet!</h2>
         <label class="switch">
           <input type="checkbox" id="globalToggle" checked />
-          <span class="slider"></span>
+          <span class="slider" title="toggle extension"></span>
         </label>
       </div>
 
@@ -345,9 +360,9 @@
           <div class="switch-container">
             <label class="switch">
               <input type="checkbox" id="threeToggle" checked />
-              <span class="slider"></span>
+              <span class="slider" title="toggle sillies"></span>
             </label>
-            <button id="toggleSettingsBtn" class="icon-btn" title="Edit :3 Rules">
+            <button id="toggleSettingsBtn" class="icon-btn" title="edit sillies">
               <span class="material-symbols-outlined"> settings </span>
             </button>
           </div>
@@ -376,9 +391,9 @@
           <div class="switch-container">
             <label class="switch">
               <input type="checkbox" id="silliesToggle" checked />
-              <span class="slider"></span>
+              <span class="slider" title="toggle sillies"></span>
             </label>
-            <button id="toggleSilliesSettingsBtn" class="icon-btn" title="Edit Silly Rules">
+            <button id="toggleSilliesSettingsBtn" class="icon-btn" title="edit sillies">
               <span class="material-symbols-outlined"> settings </span>
             </button>
           </div>
@@ -408,9 +423,9 @@
             <div class="switch-container">
               <label class="switch">
                 <input type="checkbox" id="siteToggle" checked />
-                <span class="slider"></span>
+                <span class="slider" title="toggle for this site"></span>
               </label>
-              <button id="toggleSitesBtn" class="icon-btn" title="Disabled Sites List">
+              <button id="toggleSitesBtn" class="icon-btn" title="view disabled sites">
                 <span class="material-symbols-outlined"> ad_group_off </span>
               </button>
             </div>
@@ -425,7 +440,9 @@
         </div>
       </div>
       <script src="popup.js"></script>
-      <footer>Colon3 v1.2 - <a href="https://amiminnie.github.io">amiminnie</a></footer>
+      <footer>
+        Colon3 v1.3 - <a href="https://amiminnie.github.io" target="_blank" rel="noopener noreferrer">amiminnie</a>
+      </footer>
     </div>
   </body>
 </html>
