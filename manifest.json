@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": ":3",
-  "version": "1.31",
-  "description": ":3 your internet!",
+  "name": ":3 Your Internet!",
+  "version": "1.4",
+  "description": ":3",
   "permissions": [
     "storage",
     "tabs"

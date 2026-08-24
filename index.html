@@ -6,9 +6,6 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
       rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
       :root {
         --bg-main: #fff6fa;
@@ -23,14 +20,6 @@
         --shading: #80164015;
         --text-main: #c22b67;
         --border-solid: #ffc1d9;
-      }
-
-      .material-symbols-outlined {
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 400,
-          "GRAD" 0,
-          "opsz" 24;
       }
 
       html,
@@ -161,11 +150,6 @@
           2px 2px 0 var(--shading);
         transition: all 0.2s ease;
       }
-      .icon-btn .material-symbols-outlined {
-        font-size: 1rem;
-        color: var(--surface-dsb);
-        text-shadow: 0 0 3px var(--surface-text);
-      }
       .icon-btn:hover {
         border-bottom: 6px solid var(--surface-hgt-shadow);
         margin-top: -1px;
@@ -177,6 +161,18 @@
         border-bottom: 3px solid var(--surface-hgt-shadow);
         box-shadow: 1px 1px 0 var(--shading);
         margin-top: 2px;
+      }
+
+      .settings-icon {
+        transition: all 0s;
+      }
+      .icon-btn:hover .settings-icon {
+        rotate: 120deg;
+        transition: all 0.5s ease;
+      }
+      .icon-btn:active .settings-icon {
+        rotate: 270deg;
+        transition: all 0.2s ease;
       }
 
       .hidden-panel {
@@ -235,11 +231,6 @@
         border-top: 3px solid var(--surface-shadow);
       }
 
-      .scroll-list .material-symbols-outlined {
-        font-size: 0.7rem;
-        vertical-align: -3px;
-      }
-
       .scroll-list::-webkit-scrollbar {
         width: 10px;
       }
@@ -260,7 +251,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: white;
         padding-bottom: 2px;
         padding-left: 8px;
         font-size: 12px;
@@ -275,23 +265,17 @@
         font-weight: bold;
         border: none;
         background: none;
-      }
-      .del-btn .material-symbols-outlined {
         font-size: 16px;
         color: #ff5050;
-        pointer-events: none;
       }
-      .del-btn:hover .material-symbols-outlined {
-        transform: translateY(1px);
-      }
-
       .action-btn {
-        width: 100%;
         padding: 0.3rem 0.5rem;
+        width: 100%;
         border: none;
         background: var(--surface-hgt);
         border-bottom: 5px solid var(--surface-hgt-shadow);
         border-top: 1px solid var(--highlight);
+        border-left: 1px dotted var(--surface);
         color: var(--surface-dsb);
         text-shadow: 0 0 3px var(--surface-text);
         cursor: pointer;
@@ -301,10 +285,8 @@
           2px 2px 0 var(--shading);
         transition: all 0.2s ease;
       }
-      .action-btn .material-symbols-outlined {
-        font-size: 0.8rem;
-        color: var(--surface-dsb);
-        text-shadow: 0 0 3px var(--surface-text);
+      .action-btn:first-child {
+        border-left: none;
       }
       .action-btn:hover {
         border-bottom: 6px solid var(--surface-hgt-shadow);
@@ -317,6 +299,12 @@
         border-bottom: 3px solid var(--surface-hgt-shadow);
         box-shadow: 1px 1px 0 var(--shading);
         margin-top: 2px;
+      }
+
+      .btn-column {
+        display: flex;
+        flex-direction: row;
+        margin-top: 5px;
       }
 
       .preset-link {
@@ -342,6 +330,94 @@
         color: var(--text-main);
         text-decoration: none;
       }
+
+      .update-label {
+        display: none;
+        background-color: #ff000077;
+        padding: 2px 6px;
+        font-size: 0.75rem;
+        text-decoration: none;
+        width: 100%;
+        text-align: left;
+        justify-content: space-between;
+        transform: translateX(-5px);
+      }
+      .update-label a {
+        color: white;
+      }
+      .update-label button {
+        background: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-family: "Overlock", sans-serif;
+        font-size: 12px;
+        padding: 0;
+        text-decoration: underline;
+      }
+
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+        z-index: 100;
+        opacity: 0;
+        pointer-events: none; 
+        transform: translateY(5px);
+        transition: all 0.3s ease;
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        pointer-events: auto; 
+        transform: none;
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+      }
+
+      .modal-card {
+        font-family: "Overlock", sans-serif;
+        background: var(--surface);
+        border-top: 1px solid var(--highlight);
+        border-bottom: 4px solid var(--surface-shadow);
+        padding: 12px;
+        width: 80%;
+        text-align: center;
+        box-shadow: 3px 3px 0 var(--shading);
+        outline: solid 1px var(--surface-hgt);
+      }
+
+      .modal-card p {
+        margin: 0 0 10px 0;
+        font-size: 13px;
+        color: var(--text-main);
+        font-weight: bold;
+      }
+
+      .modal-actions {
+        display: flex;
+      }
+
+      .modal-actions .action-btn {
+        font-size: 11px;
+        padding: 4px;
+      }
+
+      .cancel-btn {
+        background: var(--surface-dsb) !important;
+        color: var(--surface-text) !important;
+        text-shadow: none !important;
+        border-bottom: 4px solid var(--surface-shadow) !important;
+      }
     </style>
   </head>
   <body>
@@ -363,27 +439,26 @@
               <span class="slider" title="toggle sillies"></span>
             </label>
             <button id="toggleSettingsBtn" class="icon-btn" title="edit sillies">
-              <span class="material-symbols-outlined"> settings </span>
+              <img src="images/settings.svg" class="settings-icon" />
             </button>
           </div>
         </div>
 
         <div id="settingsPanel" class="hidden-panel">
           <div class="input-group">
-            <input type="text" id="newKey" placeholder=":)" /><span class="material-symbols-outlined">
-              arrow_forward
-            </span>
+            <input type="text" id="newKey" placeholder=":)" />
             <input type="text" id="newValue" placeholder=":3" />
-            <button id="addBtn" class="action-btn" style="width: auto; margin: 0">
-              <span class="material-symbols-outlined"> add_2 </span>
-            </button>
+            <button id="addBtn" class="action-btn" style="width: auto; margin: 0 ;  border-left: none;">＋</button>
           </div>
           <div id="emojiListContainer" class="scroll-list"></div>
           <p id="emptyWarning" style="color: #ff4d4d; font-size: 11px; margin: 0 0 5px 0">
             <b>Nothing here, add something!</b>
           </p>
-          <button id="loadPresetBtn" class="preset-link">Load Preset</button>
-          <button id="saveBtn" class="action-btn">Save</button>
+          <div class="btn-column">
+            <button id="exportBtn" class="action-btn">Export</button>
+            <button id="importBtn" class="action-btn">Import</button>
+            <button id="loadPresetBtn" class="action-btn">Preset</button>
+          </div>
         </div>
 
         <div class="setting-item">
@@ -394,27 +469,26 @@
               <span class="slider" title="toggle sillies"></span>
             </label>
             <button id="toggleSilliesSettingsBtn" class="icon-btn" title="edit sillies">
-              <span class="material-symbols-outlined"> settings </span>
+              <img src="images/settings.svg" class="settings-icon" />
             </button>
           </div>
         </div>
 
         <div id="silliesSettingsPanel" class="hidden-panel">
           <div class="input-group">
-            <input type="text" id="newSillyKey" placeholder="cookie" /><span class="material-symbols-outlined">
-              arrow_forward
-            </span>
+            <input type="text" id="newSillyKey" placeholder="cookie" />
             <input type="text" id="newSillyValue" placeholder="biscuit" />
-            <button id="addSillyBtn" class="action-btn" style="width: auto; margin: 0">
-              <span class="material-symbols-outlined"> add_2 </span>
-            </button>
+            <button id="addSillyBtn" class="action-btn" style="width: auto; margin: 0; border-left: none; ">＋</button>
           </div>
           <div id="sillyListContainer" class="scroll-list"></div>
           <p id="sillyEmptyWarning" style="color: #ff4d4d; font-size: 11px; margin: 0 0 5px 0">
             <b>It's empty, add something!</b>
           </p>
-          <button id="loadSillyPresetBtn" class="preset-link">Load Preset</button>
-          <button id="saveSillyBtn" class="action-btn">Save</button>
+          <div class="btn-column">
+            <button id="exportSillyBtn" class="action-btn">Export</button>
+            <button id="importSillyBtn" class="action-btn">Import</button>
+            <button id="loadSillyPresetBtn" class="action-btn">Preset</button>
+          </div>
         </div>
 
         <div class="bottom-listing">
@@ -426,7 +500,7 @@
                 <span class="slider" title="toggle for this site"></span>
               </label>
               <button id="toggleSitesBtn" class="icon-btn" title="view disabled sites">
-                <span class="material-symbols-outlined"> ad_group_off </span>
+                <img src="images/dsb-sites.svg" class="sites-icon" />
               </button>
             </div>
           </div>
@@ -439,10 +513,29 @@
           </p>
         </div>
       </div>
-      <script src="popup.js"></script>
       <footer>
-        Colon3 v1.3 - <a href="https://amiminnie.github.io" target="_blank" rel="noopener noreferrer">amiminnie</a>
+        Colon3 v1.4 - <a href="https://amiminnie.github.io" target="_blank" rel="noopener noreferrer">amiminnie</a>
+        <span id="update-container" class="update-label">
+          <a id="update-label" href="#" target="_blank" rel="noopener noreferrer">Update available</a>
+          <button id="skip-update">Skip version</button>
+        </span>
       </footer>
     </div>
+
+    <input type="file" id="importFileInput" accept=".json" style="display: none" />
+    <input type="file" id="importSillyFileInput" accept=".json" style="display: none" />
+
+    <div id="modalOverlay" class="modal-overlay">
+      <div class="modal-card">
+        <p id="modalMessage">Choose an action:</p>
+        <div class="modal-actions">
+          <button id="modalMergeBtn" class="action-btn">Merge</button>
+          <button id="modalReplaceBtn" class="action-btn">Replace</button>
+          <button id="modalCancelBtn" class="action-btn cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
   </body>
 </html>
