@@ -1,6 +1,8 @@
 # :3 
 Extension that :3 your internet!
 
+<img src="https://miwcmqwhudshgetmrmhf.supabase.co/storage/v1/object/public/blog-assets/1787927105994-make_it_33.png" width="40%"> <img src="https://miwcmqwhudshgetmrmhf.supabase.co/storage/v1/object/public/blog-assets/1787927205998-other_sillies.png" width="40%">
+
 # How to install :3?
 * Download the [latest release](https://github.com/amiminnie/Colon3/releases/latest) and extract it to a folder on your computer.
 * Locate the extensions page on your browser and enable Developer Mode.
